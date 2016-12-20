@@ -1,0 +1,76 @@
+\documentclass[fontsize=14pt,DIV=1,numbers=withenddot,twoside=off]{scrartcl}
+\usepackage{fontspec,xltxtra,xunicode} 
+
+\setsansfont[Scale=MatchLowercase, Ligatures=TeX]{Arial} 
+\renewcommand{\familydefault}{\sfdefault}
+
+\usepackage{polyglossia}
+\setdefaultlanguage[spelling=new]{german}
+\usepackage[german=quotes]{csquotes}
+\MakeOuterQuote{"}
+
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage[style=authoryear,backend=biber,autolang=hyphen]{biblatex}
+\usepackage[%headsep=.5cm,includehead,
+    includefoot,a4paper,lmargin=25mm,rmargin=25mm,tmargin=25mm,bmargin=20mm]{geometry}
+\usepackage[%urlcolor=blue,colorlinks=true
+]{hyperref}
+\urlstyle{sf}
+\setlist{noitemsep}
+
+% new command for grouping info about the report
+\makeatletter
+\def\@reportinfo{}
+\newcommand{\reportinfo}[3]{%
+  \def\@reportinfo{%
+   {\normalsize
+    \begin{description}[labelindent=5cm]
+     \item[Version] #1
+     \item[Cluster] #2
+     \item[Verantwortlicher Partner] #3
+    \end{description}
+  }}
+}
+\makeatother
+
+% typesetting the title
+\makeatletter
+    \def\maketitle{%
+    \begin{center}
+    \setlength{\baselineskip}{30pt}
+    {\Huge{\textbf{\@title}}}%
+    \end{center}
+    \medskip
+    \@reportinfo
+    }
+\makeatother
+
+\newcommand{\deliverable}[3]{%
+    \begin{description}
+    \item[Verantwortlicher Partner:] #1
+    \item[Projektmonat der Ablieferung:] #2
+    \end{description}%
+    #3}
+
+\title{Platz für den Titel}
+\author{N.N.}
+\date{\today}
+\reportinfo{\today}{Clusternumber}{Your institution}
+
+\bibliography{your_bib_file}
+\begin{document}
+\pagestyle{empty}
+\input{titelei}
+\newpage
+\pagestyle{plain}
+\tableofcontents
+\include{inhalt}
+\end{document}
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% TeX-PDF-mode: t
+%%% TeX-engine: xelatex
+%%% End:
